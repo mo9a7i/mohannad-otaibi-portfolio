@@ -3,11 +3,13 @@
 import { useEffect, useState } from 'react'
 import { navSections, profile } from '@/lib/data'
 
-export function SiteHeader() {
-  const [active, setActive] = useState<string>(navSections[0].id)
+type NavItem = { id: string; label: string }
+
+export function SiteHeader({ sections = navSections }: { sections?: NavItem[] }) {
+  const [active, setActive] = useState<string>(sections[0].id)
 
   useEffect(() => {
-    const ids = navSections.map((s) => s.id)
+    const ids = sections.map((s) => s.id)
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -21,7 +23,7 @@ export function SiteHeader() {
       if (el) observer.observe(el)
     })
     return () => observer.disconnect()
-  }, [])
+  }, [sections])
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
@@ -32,7 +34,7 @@ export function SiteHeader() {
           <span className="h-4 w-2 animate-pulse bg-primary" aria-hidden="true" />
         </a>
         <nav aria-label="Sections" className="flex max-w-[60%] items-center gap-1 overflow-x-auto">
-          {navSections.map((s) => (
+          {sections.map((s) => (
             <a
               key={s.id}
               href={`#${s.id}`}

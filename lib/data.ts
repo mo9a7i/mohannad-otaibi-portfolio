@@ -414,3 +414,13 @@ export const navSections = [
   { id: 'quotes', label: 'quotes' },
   { id: 'contact', label: 'contact' },
 ]
+
+export const navSectionsV2 = [
+  { id: 'stack', label: 'stack' },
+  { id: 'work', label: 'work' },
+  { id: 'contributions', label: 'contrib' },
+  { id: 'games', label: 'games' },
+  { id: 'places', label: 'places' },
+  { id: 'quotes', label: 'quotes' },
+  { id: 'contact', label: 'contact' },
+]
