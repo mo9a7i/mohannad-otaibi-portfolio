@@ -10,6 +10,7 @@ export type DetailItem = {
   description?: string
   url?: string
   group?: string
+  cover?: string
   meta?: { label: string; value: string }[]
 }
 
@@ -43,6 +44,17 @@ export function DetailModal({ item, onClose }: { item: DetailItem | null; onClos
         className="w-full max-w-lg overflow-hidden rounded-t-xl border border-border bg-card shadow-2xl sm:rounded-xl"
         onClick={(e) => e.stopPropagation()}
       >
+        {item.cover ? (
+          <div className="relative h-40 w-full overflow-hidden border-b border-border">
+            <div
+              className="h-full w-full bg-cover bg-center"
+              style={{ backgroundImage: `url(${item.cover})` }}
+              role="img"
+              aria-label={item.title}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+          </div>
+        ) : null}
         <div className="flex items-start gap-3 border-b border-border p-5">
           <SiteIcon url={item.url} alt={item.title} size={40} active className="rounded-md" />
           <div className="min-w-0 flex-1">
