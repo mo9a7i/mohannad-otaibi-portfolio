@@ -5,7 +5,13 @@ import { navSections, profile } from '@/lib/data'
 
 type NavItem = { id: string; label: string }
 
-export function SiteHeader({ sections = navSections }: { sections?: NavItem[] }) {
+export function SiteHeader({
+  sections = navSections,
+  actions,
+}: {
+  sections?: NavItem[]
+  actions?: React.ReactNode
+}) {
   const [active, setActive] = useState<string>(sections[0].id)
 
   useEffect(() => {
@@ -33,22 +39,28 @@ export function SiteHeader({ sections = navSections }: { sections?: NavItem[] })
           <span className="text-muted-foreground">:~$</span>
           <span className="h-4 w-2 animate-pulse bg-primary" aria-hidden="true" />
         </a>
-        <nav aria-label="Sections" className="flex max-w-[60%] items-center gap-1 overflow-x-auto">
-          {sections.map((s) => (
-            <a
-              key={s.id}
-              href={`#${s.id}`}
-              aria-current={active === s.id ? 'true' : undefined}
-              className={`whitespace-nowrap rounded-sm px-2.5 py-1 font-mono text-xs transition-colors ${
-                active === s.id
-                  ? 'bg-primary/15 text-primary'
-                  : 'text-muted-foreground hover:bg-accent hover:text-foreground'
-              }`}
-            >
-              {s.label}
-            </a>
-          ))}
-        </nav>
+        <div className="flex items-center gap-2">
+          <nav
+            aria-label="Sections"
+            className="flex max-w-[52vw] items-center gap-1 overflow-x-auto md:max-w-none"
+          >
+            {sections.map((s) => (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                aria-current={active === s.id ? 'true' : undefined}
+                className={`whitespace-nowrap rounded-sm px-2.5 py-1 font-mono text-xs transition-colors ${
+                  active === s.id
+                    ? 'bg-primary/15 text-primary'
+                    : 'text-muted-foreground hover:bg-accent hover:text-foreground'
+                }`}
+              >
+                {s.label}
+              </a>
+            ))}
+          </nav>
+          {actions ? <div className="shrink-0">{actions}</div> : null}
+        </div>
       </div>
     </header>
   )

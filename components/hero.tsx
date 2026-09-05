@@ -23,9 +23,18 @@ export function Hero() {
       />
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-8 md:py-24">
         <div className="flex flex-col justify-center gap-6">
-          <span className="w-fit rounded-full border border-border bg-card px-3 py-1 font-mono text-xs text-muted-foreground">
-            {profile.role}
-          </span>
+          <div className="flex items-center gap-4">
+            <img
+              src="/mohannad.jpg"
+              alt={`Portrait of ${profile.name}`}
+              width={72}
+              height={72}
+              className="size-16 shrink-0 rounded-full border border-border object-cover shadow-lg shadow-black/30 ring-2 ring-primary/40 md:size-[72px]"
+            />
+            <span className="w-fit rounded-full border border-border bg-card px-3 py-1 font-mono text-xs text-muted-foreground">
+              {profile.role}
+            </span>
+          </div>
           <h1 className="text-balance text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
             {profile.name}
           </h1>
