@@ -1,11 +1,14 @@
 import { MapPin, Mail, ArrowUpRight } from 'lucide-react'
-import { profile } from '@/lib/data'
+import { profile, directory, games } from '@/lib/data'
 import { SocialLinks } from '@/components/social-links'
 
+const toolCount = directory.reduce((sum, group) => sum + group.items.length, 0)
+const languageCount = directory.find((g) => g.id === 'languages')?.items.length ?? 0
+
 const stats = [
-  { label: 'tools tracked', value: '150+' },
-  { label: 'languages', value: '17' },
-  { label: 'years in the terminal', value: '15+' },
+  { label: 'tools tracked', value: String(toolCount) },
+  { label: 'languages', value: String(languageCount) },
+  { label: 'games logged', value: String(games.length) },
 ]
 
 export function Hero() {
@@ -80,10 +83,10 @@ export function Hero() {
               </p>
               <p className="text-foreground">developer · devops · security · self-hoster</p>
               <p className="text-muted-foreground">
-                <span className="text-primary">$</span> uptime --since
+                <span className="text-primary">$</span> cat location.txt
               </p>
               <p className="text-foreground">
-                shipping since 2010 <span className="animate-pulse text-primary">▋</span>
+                {profile.location.toLowerCase()} <span className="animate-pulse text-primary">▋</span>
               </p>
             </div>
           </div>
