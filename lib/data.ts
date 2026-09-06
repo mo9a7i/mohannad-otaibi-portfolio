@@ -31,8 +31,19 @@ export const profile = {
   role: 'Developer · DevOps · Security',
   location: 'Riyadh, Saudi Arabia',
   email: 'mohannad.otaibi@gmail.com',
+  whatsapp: 'https://wa.me/966545582222',
+  resume: '/mohannad-otaibi-resume.pdf',
   bio: 'Full-stack developer and DevOps engineer with a soft spot for automation, self-hosting and security tooling. This is my living workbench — the software I run, the systems I break in, the skills I lean on, and the corners of the web I keep coming back to.',
 }
+
+export type Social = { id: string; label: string; href: string }
+
+export const socials: Social[] = [
+  { id: 'github', label: 'GitHub', href: 'https://github.com/Mo9a7i' },
+  { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/mohannadotaibi/' },
+  { id: 'x', label: 'X / Twitter', href: 'https://twitter.com/bufai7an' },
+  { id: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/user/mo9a7i' },
+]
 
 export const directory: DirectoryGroup[] = [
   {

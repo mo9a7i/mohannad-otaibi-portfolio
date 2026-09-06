@@ -1,9 +1,10 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
-import { Mail, MapPin, MessageCircle, Send, Check } from 'lucide-react'
+import { Mail, MapPin, MessageCircle, Send, Check, FileText } from 'lucide-react'
 import { profile } from '@/lib/data'
 import { SectionHeading } from '@/components/section-heading'
+import { SocialLinks } from '@/components/social-links'
 
 const fieldClass =
   'w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary'
@@ -106,15 +107,29 @@ export function ContactSection() {
               {profile.email}
             </a>
             <a
-              href="https://wa.me/"
+              href={profile.whatsapp}
+              target="_blank"
+              rel="noreferrer noopener"
               className="flex items-center gap-3 rounded-md border border-border px-3 py-2.5 text-sm text-foreground transition-colors hover:border-primary/50 hover:bg-accent"
             >
               <MessageCircle className="size-4 text-primary" />
               WhatsApp message
             </a>
+            <a
+              href={profile.resume}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="flex items-center gap-3 rounded-md border border-border px-3 py-2.5 text-sm text-foreground transition-colors hover:border-primary/50 hover:bg-accent"
+            >
+              <FileText className="size-4 text-primary" />
+              Download résumé
+            </a>
             <div className="flex items-center gap-3 rounded-md border border-border px-3 py-2.5 text-sm text-muted-foreground">
               <MapPin className="size-4 text-primary" />
               {profile.location}
+            </div>
+            <div className="mt-1 flex items-center gap-1 border-t border-border pt-4">
+              <SocialLinks />
             </div>
           </div>
         </div>
