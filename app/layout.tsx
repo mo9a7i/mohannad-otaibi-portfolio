@@ -1,16 +1,13 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import { Geist, Geist_Mono, Inter, Space_Grotesk, IBM_Plex_Mono } from 'next/font/google'
+import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 
 const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space' })
-const plexMono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-plex-mono' })
 
-const themeInitScript = `(function(){try{var d=document.documentElement;var m=localStorage.getItem('theme-mode')||'dark';var sysLight=window.matchMedia('(prefers-color-scheme: light)').matches;var light=m==='light'||(m==='system'&&sysLight);d.classList.toggle('light',light);var a=localStorage.getItem('theme-accent');if(a)d.setAttribute('data-accent',a);var f=localStorage.getItem('theme-font');if(f)d.setAttribute('data-font',f);var r=localStorage.getItem('theme-radius');if(r)d.setAttribute('data-radius',r);}catch(e){}})();`
+const themeInitScript = `(function(){try{var d=document.documentElement;var m=localStorage.getItem('theme-mode')||'dark';var sysLight=window.matchMedia('(prefers-color-scheme: light)').matches;var light=m==='light'||(m==='system'&&sysLight);d.classList.toggle('light',light);}catch(e){}})();`
 
 export const metadata: Metadata = {
   title: 'Mohannad Faihan Otaibi — Developer & DevOps Engineer',
@@ -33,7 +30,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`bg-background ${geistSans.variable} ${geistMono.variable} ${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable}`}
+      className={`bg-background ${geistSans.variable} ${geistMono.variable}`}
     >
       <body className="font-sans antialiased">
         <Script id="theme-init" strategy="beforeInteractive">

@@ -9,7 +9,6 @@ import { QuotesSection } from '@/components/quotes-section'
 import { ContactSection } from '@/components/contact-section'
 import { ThemeProvider } from '@/components/theme/theme-provider'
 import { ModeToggle } from '@/components/theme/mode-toggle'
-import { AppearancePanel } from '@/components/theme/appearance-panel'
 import { profile, navSectionsV2 } from '@/lib/data'
 
 export const metadata: Metadata = {
@@ -33,7 +32,6 @@ export default function PageV2() {
           <QuotesSection />
           <ContactSection />
         </main>
-        <AppearancePanel />
         <footer className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-8 font-mono text-xs text-muted-foreground md:flex-row md:px-8">
           <span>
