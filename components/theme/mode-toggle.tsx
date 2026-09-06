@@ -3,39 +3,31 @@
 import { Sun, Moon, Monitor } from 'lucide-react'
 import { useTheme, type Mode } from './theme-provider'
 
-const OPTIONS: { value: Mode; label: string; Icon: typeof Sun }[] = [
-  { value: 'light', label: 'Light mode', Icon: Sun },
-  { value: 'dark', label: 'Dark mode', Icon: Moon },
-  { value: 'system', label: 'System default', Icon: Monitor },
-]
+const CYCLE: Record<Mode, Mode> = {
+  system: 'light',
+  light: 'dark',
+  dark: 'system',
+}
+
+const META: Record<Mode, { label: string; Icon: typeof Sun }> = {
+  system: { label: 'System default', Icon: Monitor },
+  light: { label: 'Light mode', Icon: Sun },
+  dark: { label: 'Dark mode', Icon: Moon },
+}
 
 export function ModeToggle() {
   const { mode, setMode } = useTheme()
+  const { label, Icon } = META[mode]
 
   return (
-    <div
-      role="radiogroup"
-      aria-label="Color mode"
-      className="flex items-center gap-0.5 rounded-md border border-border bg-card p-0.5"
+    <button
+      type="button"
+      aria-label={`Theme: ${label}. Click to change.`}
+      title={label}
+      onClick={() => setMode(CYCLE[mode])}
+      className="flex size-8 items-center justify-center rounded-md border border-border bg-card text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
     >
-      {OPTIONS.map(({ value, label, Icon }) => (
-        <button
-          key={value}
-          type="button"
-          role="radio"
-          aria-checked={mode === value}
-          aria-label={label}
-          title={label}
-          onClick={() => setMode(value)}
-          className={`flex size-7 items-center justify-center rounded-sm transition-colors ${
-            mode === value
-              ? 'bg-primary/15 text-primary'
-              : 'text-muted-foreground hover:bg-accent hover:text-foreground'
-          }`}
-        >
-          <Icon className="size-4" />
-        </button>
-      ))}
-    </div>
+      <Icon className="size-4" />
+    </button>
   )
 }

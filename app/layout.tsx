@@ -7,7 +7,7 @@ import './globals.css'
 const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
 
-const themeInitScript = `(function(){try{var d=document.documentElement;var m=localStorage.getItem('theme-mode')||'dark';var sysLight=window.matchMedia('(prefers-color-scheme: light)').matches;var light=m==='light'||(m==='system'&&sysLight);d.classList.toggle('light',light);}catch(e){}})();`
+const themeInitScript = `(function(){try{var d=document.documentElement;var m=localStorage.getItem('theme-mode')||'system';var sysLight=window.matchMedia('(prefers-color-scheme: light)').matches;var light=m==='light'||(m==='system'&&sysLight);d.classList.toggle('light',light);}catch(e){}})();`
 
 export const metadata: Metadata = {
   title: 'Mohannad Faihan Otaibi — Developer & DevOps Engineer',

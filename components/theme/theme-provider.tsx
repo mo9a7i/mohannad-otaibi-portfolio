@@ -18,11 +18,11 @@ function applyMode(mode: Mode) {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [mode, setModeState] = useState<Mode>('dark')
+  const [mode, setModeState] = useState<Mode>('system')
 
   // Hydrate from localStorage on mount.
   useEffect(() => {
-    setModeState((localStorage.getItem('theme-mode') as Mode) || 'dark')
+    setModeState((localStorage.getItem('theme-mode') as Mode) || 'system')
   }, [])
 
   // Keep the DOM in sync with system changes while in "system" mode.
