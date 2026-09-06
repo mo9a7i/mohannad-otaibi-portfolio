@@ -129,7 +129,7 @@ export function ContactSection() {
               {profile.location}
             </div>
             <div className="mt-1 flex items-center gap-1 border-t border-border pt-4">
-              <SocialLinks />
+              <SocialLinks showResume={false} />
             </div>
           </div>
         </div>

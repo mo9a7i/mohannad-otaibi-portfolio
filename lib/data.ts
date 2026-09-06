@@ -43,6 +43,14 @@ export const socials: Social[] = [
   { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/mohannadotaibi/' },
   { id: 'x', label: 'X / Twitter', href: 'https://twitter.com/bufai7an' },
   { id: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/user/mo9a7i' },
+  { id: 'twitch', label: 'Twitch', href: 'https://www.twitch.tv/bufai7an' },
+  { id: 'live', label: 'BuFai7an.Live', href: 'https://bufai7an.live/' },
+  { id: 'foursquare', label: 'Foursquare', href: 'https://foursquare.com/bufai7an' },
+  { id: 'stackoverflow', label: 'Stack Overflow', href: 'https://stackoverflow.com/users/5588602/mohannad-otaibi' },
+  { id: 'npm', label: 'npm', href: 'https://www.npmjs.com/~mo9a7i' },
+  { id: 'traidnt', label: 'Traidnt.net', href: 'http://web.archive.org/web/20160213150705/http://www.traidnt.net/vb/u53424/' },
+  { id: 'adslgate', label: 'ADSLGATE', href: 'https://www.adslgate.com/dsl/member.php?u=299526' },
+  { id: 'swalif', label: 'Swalif.net', href: 'https://www.swalif.net/softs/1317.html' },
 ]
 
 export const directory: DirectoryGroup[] = [

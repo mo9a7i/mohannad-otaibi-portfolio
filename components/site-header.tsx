@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { navSections, profile } from '@/lib/data'
-import { SocialLinks } from '@/components/social-links'
 
 type NavItem = { id: string; label: string }
 
@@ -60,7 +59,6 @@ export function SiteHeader({
               </a>
             ))}
           </nav>
-          <SocialLinks className="hidden shrink-0 border-l border-border pl-2 md:flex" />
           {actions ? <div className="shrink-0">{actions}</div> : null}
         </div>
       </div>

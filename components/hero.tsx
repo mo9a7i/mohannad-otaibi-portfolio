@@ -1,5 +1,6 @@
 import { MapPin, Mail, ArrowUpRight } from 'lucide-react'
 import { profile } from '@/lib/data'
+import { SocialLinks } from '@/components/social-links'
 
 const stats = [
   { label: 'tools tracked', value: '150+' },
@@ -58,6 +59,7 @@ export function Hero() {
           <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
             <MapPin className="size-3.5 text-primary" /> {profile.location}
           </div>
+          <SocialLinks className="pt-1" />
         </div>
 
         <div className="flex items-center">

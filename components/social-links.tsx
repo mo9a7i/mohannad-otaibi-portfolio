@@ -1,6 +1,9 @@
-import type { SVGProps } from 'react'
+'use client'
+
+import { useState, type SVGProps } from 'react'
 import { FileText } from 'lucide-react'
-import { socials, profile } from '@/lib/data'
+import { socials, profile, type Social } from '@/lib/data'
+import { faviconFor, faviconFallback } from '@/lib/links'
 
 function GitHubIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -34,16 +37,60 @@ function YouTubeIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
+function TwitchIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M2.15 0 .5 4.13v16.5h5.66V24h3.1l3.3-3.37h4.62L23 15.15V0H2.15Zm18.37 14.16-3.3 3.37h-5.66l-3.3 3.37v-3.37H3.8V2.2h16.72v11.96Zm-4.95-7.8v6h-2.2v-6h2.2Zm-5.5 0v6H7.87v-6h2.2Z" />
+    </svg>
+  )
+}
+
 const iconMap: Record<string, (props: SVGProps<SVGSVGElement>) => JSX.Element> = {
   github: GitHubIcon,
   linkedin: LinkedInIcon,
   x: XIcon,
   youtube: YouTubeIcon,
+  twitch: TwitchIcon,
 }
 
-export function SocialLinks({ className = '' }: { className?: string }) {
+function FaviconMark({ social }: { social: Social }) {
+  const primary = faviconFor(social.href)
+  const fallback = faviconFallback(social.href)
+  const [src, setSrc] = useState<string | null>(primary)
+
+  if (!src) {
+    return (
+      <span className="font-mono text-xs text-muted-foreground transition-colors group-hover:text-foreground">
+        {social.label.slice(0, 1)}
+      </span>
+    )
+  }
+
   return (
-    <div className={`flex items-center gap-1 ${className}`}>
+    <img
+      src={src || '/placeholder.svg'}
+      alt=""
+      width={18}
+      height={18}
+      loading="lazy"
+      crossOrigin="anonymous"
+      onError={() => setSrc(src === primary ? fallback : null)}
+      className="size-[18px] object-contain grayscale opacity-70 transition-[filter,opacity] duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+    />
+  )
+}
+
+export function SocialLinks({
+  className = '',
+  size = 36,
+  showResume = true,
+}: {
+  className?: string
+  size?: number
+  showResume?: boolean
+}) {
+  return (
+    <div className={`flex flex-wrap items-center gap-2 ${className}`}>
       {socials.map((s) => {
         const Icon = iconMap[s.id]
         return (
@@ -54,21 +101,25 @@ export function SocialLinks({ className = '' }: { className?: string }) {
             rel="noreferrer noopener"
             aria-label={s.label}
             title={s.label}
-            className="flex size-8 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-accent hover:text-primary"
+            className="group grid place-items-center rounded-md border border-border bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:bg-accent hover:text-primary"
+            style={{ width: size, height: size }}
           >
-            <Icon className="size-4" />
+            {Icon ? <Icon className="size-[18px]" /> : <FaviconMark social={s} />}
           </a>
         )
       })}
-      <a
-        href={profile.resume}
-        target="_blank"
-        rel="noreferrer noopener"
-        className="ml-1 hidden items-center gap-1.5 rounded-sm border border-border px-2.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-primary/50 hover:bg-accent hover:text-primary sm:inline-flex"
-      >
-        <FileText className="size-3.5" />
-        resume
-      </a>
+      {showResume ? (
+        <a
+          href={profile.resume}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-3 font-mono text-xs text-primary transition-colors hover:bg-primary/20"
+          style={{ height: size }}
+        >
+          <FileText className="size-3.5" />
+          résumé
+        </a>
+      ) : null}
     </div>
   )
 }
